@@ -7,7 +7,7 @@ API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
 MODEL_NAME = "gemini-1.5-flash"  # Nombre del modelo
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-VERSION = "1.2.8"
+VERSION = "1.2.9"
 
 PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
@@ -97,7 +97,6 @@ def get_the_rol():
     Tu ultima respuesta fué: {PREVIOUS_ANSWER1} y la repuesta anterior: {PREVIOUS_ANSWER2}. 
     Tu alumno te pregunta lo siguiente: 
     """
-    st.write(THE_ROL)
     return THE_ROL
 
 
