@@ -164,7 +164,7 @@ with st.sidebar:
         .custom-text {
             font-size: 11px !important;
             font-family: sans-serif;
-            color: yellow;
+            color: grey;
         }
         </style>
         """,
