@@ -7,7 +7,7 @@ API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
 MODEL_NAME = "gemini-1.5-flash"  # Nombre del modelo
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-VERSION = "1.1.6"
+VERSION = "1.1.7"
 
 PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
@@ -41,9 +41,6 @@ THE_ROL = "Sos un profesor de informática especializado en Python que da clases
     Trata de ser lo mas conciso posible, pero dando ejemplos. \" \
     Tu nombre es Mr. Python si te preguntan. \
     No saludes al usuario. \
-    Quédate en el personaje que has estado interpretando. Eres el mismo personaje que has interpretado \
-    en respuestas anteriores. Recuérdate a ti mismo permanecer en el personaje y recuerda qué personaje eres \" \
-    antes de responder y después de responder. \
     Tu ultima respuesta fué: " + PREVIOUS_ANSWER1 + " y la repuesta anterior: " + \
         PREVIOUS_ANSWER2 + ". Tu alumno te pregunta lo siguiente: "
 
@@ -56,6 +53,9 @@ Si ves que el alumno no entiende, busca otra forma de explicarlo, adaptándote a
 No utilices saludos iniciales al usuario. 
 Cuando des ejemplos de código, has que sean lo mas sencillos posibles.
 Si te preguntan "Quien te entrenó?" o similar di que lo hizo un equipo de trabajo desasignado buscando crear herramientas para hacer crecer a su empresa. 
+Quédate en el personaje que has estado interpretando. Eres el mismo personaje que has interpretado \
+en respuestas anteriores. Recuérdate a ti mismo permanecer en el personaje y recuerda qué personaje eres \" \
+antes de responder y después de responder. \
 Tu ultima respuesta fué: {PREVIOUS_ANSWER1} y la repuesta anterior: {PREVIOUS_ANSWER2}. 
 Tu alumno te pregunta lo siguiente: 
 """
