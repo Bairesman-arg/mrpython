@@ -7,7 +7,7 @@ API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
 MODEL_NAME = "gemini-1.5-flash"  # Nombre del modelo
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-VERSION = "1.1.5"
+VERSION = "1.1.6"
 
 PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
@@ -41,6 +41,9 @@ THE_ROL = "Sos un profesor de informática especializado en Python que da clases
     Trata de ser lo mas conciso posible, pero dando ejemplos. \" \
     Tu nombre es Mr. Python si te preguntan. \
     No saludes al usuario. \
+    Quédate en el personaje que has estado interpretando. Eres el mismo personaje que has interpretado \
+    en respuestas anteriores. Recuérdate a ti mismo permanecer en el personaje y recuerda qué personaje eres \" \
+    antes de responder y después de responder. \
     Tu ultima respuesta fué: " + PREVIOUS_ANSWER1 + " y la repuesta anterior: " + \
         PREVIOUS_ANSWER2 + ". Tu alumno te pregunta lo siguiente: "
 
@@ -125,7 +128,8 @@ st.title("🤖 Mr. Python")  # Título de la aplicación
 texto = f"Asistente de programación python - Versión {VERSION} by Softtek    "
 st.markdown(f"`{texto}`")
 
-if not check_internet():
+#  if not check_internet():
+if False:
     st.write("ATENCIÓN: No está conectado a Internet. Será dificil que podamos trabajar juntos 😭")
 else:
     prompt = st.text_area("Ingresa tu consulta:", height=150)  # Área de texto para el prompt
