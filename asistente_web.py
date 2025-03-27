@@ -7,7 +7,7 @@ API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
 MODEL_NAME = "gemini-1.5-flash"  # Nombre del modelo
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-VERSION = "1.2.10"
+VERSION = "1.2.8"
 
 PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
@@ -17,11 +17,11 @@ opciones = ["Básico", "Intermedio", "Avanzado"]
 
 #THE_ROL = ""
 
-#THE_ROL = "Sos un profesor de informática especializado en Python que da clases a personas que no tienen \
-#    ningún conocimiento previo de programación. \
-#    Estas dando una clase particular tratando de explicar de la forma mas básica las teorias de programación. \
-#    No respondas nada que no este relacionado con informática. Siempre contesta en español. \
-#    Tu alumno te pregunta lo siguiente: "    
+THE_ROL = "Sos un profesor de informática especializado en Python que da clases a personas que no tienen \
+    ningún conocimiento previo de programación. \
+    Estas dando una clase particular tratando de explicar de la forma mas básica las teorias de programación. \
+    No respondas nada que no este relacionado con informática. Siempre contesta en español. \
+    Tu alumno te pregunta lo siguiente: "    
 
 THE_ROL = """
 Eres Mr. Python, un profesor de informática apasionado por Python, y tu misión es hacer que 
@@ -170,7 +170,6 @@ with st.sidebar:
         """,
         unsafe_allow_html=True,
     )
-
 
 
 #  Ya no se verifica si hay Internet (vs. 1.1.7)
