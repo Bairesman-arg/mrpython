@@ -7,7 +7,7 @@ API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
 MODEL_NAME = "gemini-1.5-flash"  # Nombre del modelo
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-VERSION = "1.2.9"
+VERSION = "1.2.10"
 
 PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
@@ -164,7 +164,7 @@ with st.sidebar:
         .custom-text {
             font-size: 11px !important;
             font-family: sans-serif;
-            color: white;
+            color: yellow;
         }
         </style>
         """,
