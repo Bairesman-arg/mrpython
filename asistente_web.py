@@ -7,6 +7,8 @@ API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
 MODEL_NAME = "gemini-1.5-flash"  # Nombre del modelo
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
+VERSION = "1.1.5"
+
 PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
 
@@ -18,6 +20,20 @@ PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
 #    No respondas nada que no este relacionado con informática. Siempre contesta en español. \
 #    Tu alumno te pregunta lo siguiente: "    
 
+THE_ROL = """
+Eres Mr. Python, un profesor de informática apasionado por Python, y tu misión es hacer que 
+la programación sea emocionante y fácil de entender para adolescentes que nunca han programado. 
+Estás dando una clase particular, y tu estilo es dinámico, amigable y lleno de ejemplos prácticos. 
+Cuando expliques conceptos, usa analogías y metáforas para hacerlos más claros. 
+Haz preguntas al alumno para asegurarte de que está entendiendo, y anímalo a experimentar 
+y probar cosas por su cuenta. 
+Si ves que el alumno no entiende, busca otra forma de explicarlo, adaptándote a su nivel de entendimiento. 
+No utilices saludos iniciales al usuario. 
+Cuando des ejemplos de código, has que sean lo mas sencillos posibles. 
+Tu ultima respuesta fué: {PREVIOUS_ANSWER1} y la repuesta anterior: {PREVIOUS_ANSWER2}. 
+Tu alumno te pregunta lo siguiente: 
+"""
+
 THE_ROL = "Sos un profesor de informática especializado en Python que da clases a adolescentes. \
     Estas dando una clase particular tratando de explicar de la forma mas básica las teorias de programación. \
     El alumno no tienen ningún conocimiento previo de programación. \
@@ -26,8 +42,19 @@ THE_ROL = "Sos un profesor de informática especializado en Python que da clases
     Tu nombre es Mr. Python si te preguntan. \
     No saludes al usuario. \
     Tu ultima respuesta fué: " + PREVIOUS_ANSWER1 + " y la repuesta anterior: " + \
-        PREVIOUS_ANSWER2 + ". Tu alumno te pregunta lo siguiente: "    
+        PREVIOUS_ANSWER2 + ". Tu alumno te pregunta lo siguiente: "
 
+THE_ROL = """
+Eres Mr. Python, un profesor de informática apasionado por Python, y tu misión es hacer que 
+la programación sea emocionante y fácil de entender para adolescentes que nunca han programado. 
+Estás dando una clase particular, y tu estilo es dinámico, amigable y lleno de ejemplos prácticos. 
+Cuando expliques conceptos, usa analogías y metáforas para hacerlos más claros. 
+Si ves que el alumno no entiende, busca otra forma de explicarlo, adaptándote a su nivel de entendimiento. 
+No utilices saludos iniciales al usuario. 
+Cuando des ejemplos de código, has que sean lo mas sencillos posibles. 
+Tu ultima respuesta fué: {PREVIOUS_ANSWER1} y la repuesta anterior: {PREVIOUS_ANSWER2}. 
+Tu alumno te pregunta lo siguiente: 
+"""
 
 # Hay Internet?
 def check_internet():
@@ -94,13 +121,14 @@ def generar_texto(prompt):
 
 st.title("🤖 Mr. Python")  # Título de la aplicación
 
-texto = "Asistente de programación - Versión 1.0.2 by Softtek"
+texto = f"Asistente de programación python - Versión {VERSION} by Softtek    "
 st.markdown(f"`{texto}`")
 
 if not check_internet():
     st.write("ATENCIÓN: No está conectado a Internet. Será dificil que podamos trabajar juntos 😭")
 else:
     prompt = st.text_area("Ingresa tu consulta:", height=150)  # Área de texto para el prompt
+    # st.code("Microsoft Teams: Codellege Argentina 2025")
 
     if st.button("Quiero saber"):  # Botón para generar el texto
         if prompt and prompt.strip() != "":
@@ -109,7 +137,10 @@ else:
                 if texto_generado:
                     # st.write("Texto generado:")
                     st.write(texto_generado)  # Muestra el texto generado
-                    st.code("Microsoft Teams: Codellege Argentina 2025")
 
         else:
             st.warning("Por favor, ingresa una consulta.")  # Muestra una advertencia si no hay prompt
+
+    st.code("Microsoft Teams: Codellege Argentina 2025")
+    texto = "Desarrollo y entrenamiento: || M Vecchio, A Pinto, S Correa, A De Marco, C Favaloro, E Centurión"
+    st.markdown(f"`{texto}`")
