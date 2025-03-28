@@ -20,11 +20,11 @@ def get_apikey():
     ruta_script = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else \
         os.path.dirname(os.path.abspath(__file__))
 
-    with open( ruta_script + "\\mrpython.pkl", "rb") as archivo:
+    with open( ruta_script + "/mrpython.pkl", "rb") as archivo:
         objeto_pickle = pickle.load(archivo)
 
     # Desencriptar archivo
-    with open( ruta_script + '\\mrpython.lic', 'rb') as f:
+    with open( ruta_script + '/mrpython.lic', 'rb') as f:
         encrypted_data = f.read()
         decrypted_data = objeto_pickle.decrypt(encrypted_data)
 
