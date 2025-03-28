@@ -2,29 +2,18 @@ import streamlit as st
 import requests, sys, os, pickle
 import json, urllib, ssl
 
-# Reemplaza con tu clave de API real
-# API_KEY = "AIzaSyCMuyEqJTeGIeIYktdd27QeQtqGGd7mNsI"
-
-VERSION = "1.3.12"
+VERSION = "1.3.14"
 
 def get_apikey():
-
-    # Determinar ruta actual
-    #if getattr(sys, 'frozen', False):
-    #    # Si el programa se ejecuta como un archivo ejecutable
-    #    ruta_script = os.path.dirname(sys.executable)
-    #else:
-    #    # Si el programa se ejecuta como un script de Python
-    #    ruta_script = os.path.dirname(os.path.abspath(__file__))
 
     ruta_script = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else \
         os.path.dirname(os.path.abspath(__file__))
 
-    with open( ruta_script + "/mrpython.pkl", "rb") as archivo:
+    with open( ruta_script + "\\mrpython.pkl", "rb") as archivo:
         objeto_pickle = pickle.load(archivo)
 
     # Desencriptar archivo
-    with open( ruta_script + '/mrpython.lic', 'rb') as f:
+    with open( ruta_script + '\\mrpython.lic', 'rb') as f:
         encrypted_data = f.read()
         decrypted_data = objeto_pickle.decrypt(encrypted_data)
 
@@ -45,15 +34,7 @@ PREVIOUS_ANSWER1 = "Ninguna"
 PREVIOUS_ANSWER2 = PREVIOUS_ANSWER1
 
 # Lista de opciones para la lista desplegable
-opciones = ["Inicial", "Básico", "Intermedio", "Avanzado"]
-
-#THE_ROL = ""
-
-THE_ROL = "Sos un profesor de informática especializado en Python que da clases a personas que no tienen \
-    ningún conocimiento previo de programación. \
-    Estas dando una clase particular tratando de explicar de la forma mas básica las teorias de programación. \
-    No respondas nada que no este relacionado con informática. Siempre contesta en español. \
-    Tu alumno te pregunta lo siguiente: "    
+opciones = ["Principiante", "Básico", "Intermedio", "Avanzado"]
 
 THE_ROL = """
 Eres Mr. Python, un profesor de informática apasionado por Python, y tu misión es hacer que 
@@ -108,13 +89,13 @@ def swap_answers(generated_text):
 def get_the_rol():
 
     NIVEL = ""
-    if opcion_seleccionada == "Inicial":
+    if opcion_seleccionada == "Principiante":
         NIVEL = "y fácil de entender para niños que nunca han programado"
     elif opcion_seleccionada == "Básico":
         NIVEL = "y fácil de entender para personas que tienen pocos conocimientos de programación"
     elif opcion_seleccionada == "Intermedio":
         NIVEL = "para personas con un nivel intermedio en programación en donde puedes utilizar un lenguaje técnico"
-    else:
+    else: # Avanzado
         NIVEL = "para personas expertas en programación en donde debes utilizar un lenguaje técnico"
 
     THE_ROL = f"""
@@ -162,7 +143,7 @@ def generar_texto(prompt):
         else:
             st.error("No se encontró texto generado en la respuesta.")  # Muestra un error en Streamlit
             st.write(response_json)  # Muestra la respuesta para depuración
-            return None  # Devuelve None para indicar un error
+            return None              # Devuelve None para indicar un error
 
     except requests.exceptions.RequestException as e:
         st.error(f"Error en la solicitud: {e}")  # Muestra el error en Streamlit
@@ -192,6 +173,14 @@ with st.sidebar:
     st.markdown('<p class="custom-text">Indica por favor tu nivel de conocimientos en Python o en algún otro lenguaje. \
                  Esto permitirá que el profesor pueda adaptar sus respuestas.</p>', unsafe_allow_html=True)
 
+    st.markdown('<p class="custom-text">NOTA: En general, los textos incluídos en recuadros con fondos más oscuros \
+                en las respuestas, indican código que puedes copiar y pegar en tu editor para su ejecución. \
+                </p>', unsafe_allow_html=True)
+
+    st.markdown('<p class="custom-text">Si posicionas el cursor del ratón sobre ellos, verás arriba a la derecha \
+                un ícono para copiar el texto.</p>', unsafe_allow_html=True)
+
+
     # temperature = st.sidebar.slider('temperatura', min_value=0.00, max_value=2.0, value=1.0, step=0.01 )
 
     st.markdown(
@@ -208,17 +197,17 @@ with st.sidebar:
     )
 
 
-#  Ya no se verifica si hay Internet (vs. 1.1.7)
+#  Ya no se verifica si hay Internet (desde vs. 1.1.7)
 #  if not check_internet():
 if False:
     st.write("ATENCIÓN: No está conectado a Internet. Será dificil que podamos trabajar juntos 😭")
 else:
-    prompt = st.text_area("Ingresa tu consulta:", height=150)  # Área de texto para el prompt
-    # st.code("Microsoft Teams: Codellege Argentina 2025")
+    prompt = st.text_area("Ingresa tu consulta. Luego pulsa [Tab] para acceder al botón 'Quiero saber' :", \
+                          height=150)  # Área de texto para el prompt
 
     if st.button("Quiero saber"):  # Botón para generar el texto
         if prompt and prompt.strip() != "":
-            with st.spinner("Generando texto..."):  # Muestra un spinner mientras se genera el texto
+            with st.spinner("Generando la respuesta..."):  # Muestra un spinner mientras se genera el texto
                 texto_generado = generar_texto(prompt)
                 if texto_generado:
                     # st.write("Texto generado:")
