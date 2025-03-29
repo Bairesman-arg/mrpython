@@ -2,7 +2,7 @@ import streamlit as st
 import requests, sys, os, pickle
 import json, urllib, ssl
 
-VERSION = "1.4.18"
+VERSION = "1.4.19"
 
 def get_apikey():
 
